@@ -19,10 +19,10 @@ func(arg1="Hello", arg2="World")
 ```
 
 ###db_dump.py
-This file uses Popen and stdout to grab the output of mysqldump directly, skipping the writing the file to the file system.  It also adds the ability to remotely call this command, though currently on systems that are in authorized_keys can do this.
+This file uses Popen and stdout to grab the output of mysqldump directly, which skips writing the file to the file system.  It also adds the ability to remotely call via SSH this command, though currently on systems that are in authorized_keys can do this.
 
 ###db_dump_internal.py
-The second modification uses the excellent paramiko library (https://github.com/paramiko/paramiko) to handle all of the SSHing and SFTPing internally, without calling any external commands.  This allows using passwords passed in as parameters, though the systems should have at least connected once to get past the "Are you sure you want to continue connecting..." unknown host check.  Also, this version uses the logging library, and has the ability to upload the file in debug mode, which takes a hash of the mysqldump export, uploads the file, downloads the file, takes a hash of the downloaded file and compares them.
+The second modification uses the excellent paramiko library (https://github.com/paramiko/paramiko) to handle all of the SSHing and SFTPing internally, without calling any external commands.  This allows using passwords passed in as parameters, though the systems should have at least connected once to get past the "Are you sure you want to continue connecting..." unknown host check.  Also, this version uses the logging library, and has the ability to upload the file in debug mode.  Debug mode simply  takes a hash of the mysqldump export, uploads the file, downloads the file, takes a hash of the downloaded file and compares them.
 
 
 
